@@ -64,9 +64,8 @@ class Player
     elsif evaluator.pair? && me.bet < 150
       raise_by(game_state, 10)
     elsif evaluator.three_of_a_kind? || evaluator.two_pair? || evaluator.pair?
-      call(game_state)
     else
-      fold
+      call(game_state)
     end
   end
 
