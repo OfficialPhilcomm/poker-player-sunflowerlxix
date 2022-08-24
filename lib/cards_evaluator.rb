@@ -18,7 +18,11 @@ class CardsEvaluator
   end
 
   def two_pair?
-
+    cards.map do |card|
+      card.rank
+    end.tally.count do |rank, count|
+      count == 2
+    end == 2
   end
 
   def three_of_a_kind?

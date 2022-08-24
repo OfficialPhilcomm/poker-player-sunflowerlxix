@@ -67,4 +67,33 @@ RSpec.describe CardsEvaluator do
       end
     end
   end
+
+  describe "two_pair?" do
+    context "match" do
+      let(:cards) do
+        [
+          Card.new("9", "spades"),
+          Card.new("9", "clubs"),
+          Card.new("10", "spades"),
+          Card.new("10", "hearts")
+        ]
+      end
+      it "matches" do
+        expect(subject).to be_two_pair
+      end
+    end
+
+    context "no match" do
+      let(:cards) do
+        [
+          Card.new("9", "spades"),
+          Card.new("10", "hearts")
+        ]
+      end
+
+      it "doesn't match" do
+        expect(subject).not_to be_two_pair
+      end
+    end
+  end
 end
