@@ -35,6 +35,18 @@ class Player
   def handle_other_rounds(game_state)
     me = OpenStruct.new(game_state.players[game_state.in_action])
 
-    game_state.current_buy_in - me.bet
+    all_cards = me.hole_cards.map do |hole_card|
+      Card.from_json(hole_card)
+    end + game_state.community_cards.map do |community_card|
+      Card.from_json(community_card)
+    end
+
+    evaluator = CardsEvaluator.new(all_cards)
+
+    if evaluator.royal_flush?
+      me.stack
+    else
+      game_state.current_buy_in - me.bet
+    end
   end
 end

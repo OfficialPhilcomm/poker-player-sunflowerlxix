@@ -5,10 +5,6 @@ class CardsEvaluator
     @cards = cards
   end
 
-  def evaluate
-
-  end
-
   def pair?
     cards.map do |card|
       card.rank
