@@ -60,6 +60,14 @@ class CardsEvaluator
   end
 
   def royal_flush?
-    
+    %w[hearts spades clubs diamonds].map do |suit|
+      cards.select do |card|
+        card.suite == suit
+      end.map do |card|
+        ["10", "J", "Q", "K", "A"].include? card.suite
+      end.count
+    end.select do |card_count|
+      card_count == 5
+    end.any?
   end
 end
