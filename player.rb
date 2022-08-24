@@ -63,8 +63,10 @@ class Player
       raise_by(game_state, 20)
     elsif evaluator.pair? && me.bet < 150
       raise_by(game_state, 10)
-    else
+    elsif evaluator.three_of_a_kind? || evaluator.two_pair? || evaluator.pair?
       call(game_state)
+    else
+      fold
     end
   end
 
@@ -82,8 +84,8 @@ class Player
     game_state.current_buy_in - me.bet + raise_by
   end
 
-  def fold(game_state)
-    game_state.current_buy_in
+  def fold
+    0
   end
 
   def all_in(game_state)
