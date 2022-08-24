@@ -5,4 +5,8 @@ class Card
     @rank = rank
     @suite = suite
   end
+
+  def over_nine?
+    %w[10 J Q K A].include? @rank
+  end
 end
