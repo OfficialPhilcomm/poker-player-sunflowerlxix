@@ -67,11 +67,7 @@ class Player
     # else
     #   call(game_state)
     # end
-    if game_state.round == 0
-      call(game_state)
-    else
-      all_in(game_state)
-    end
+    call(game_state)
   end
 
   def from_evaluator(game_state, evaluator_result)
