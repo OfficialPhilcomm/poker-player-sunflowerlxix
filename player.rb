@@ -1,7 +1,7 @@
 
 class Player
 
-  VERSION = "Default Ruby folding player"
+  VERSION = "Very good version"
 
   def bet_request(game_state)
     player_in_action = game_state["in_action"]
