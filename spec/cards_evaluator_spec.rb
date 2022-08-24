@@ -18,7 +18,7 @@ RSpec.describe CardsEvaluator do
         ]
       end
       it "matches" do
-        expect(subject).to be_pair
+        expect(subject).to be_three_of_a_kind
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe CardsEvaluator do
       end
 
       it "doesn't match" do
-        expect(subject).not_to be_pair
+        expect(subject).not_to be_three_of_a_kind
       end
     end
 
