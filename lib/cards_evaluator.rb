@@ -18,7 +18,7 @@ class CardsEvaluator
       card.rank
     end.tally.count do |rank, count|
       count == 2
-    end == 2
+    end >= 2
   end
 
   def three_of_a_kind?
