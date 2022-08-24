@@ -14,7 +14,7 @@ class Player
     end.any?
 
     if has_value_card
-      game_state["current_buy_in"] - me["bet"]
+      game_state.current_buy_in - me.bet
     else
       0
     end
