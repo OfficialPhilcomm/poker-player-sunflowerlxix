@@ -8,7 +8,7 @@ class Player
   def bet_request(game_state)
     game_state = OpenStruct.new(game_state)
 
-    Rails.logger.info game_state.community_cards
+    puts game_state.community_cards
     if game_state.community_cards&.any?
       handle_first_round(game_state)
     else
