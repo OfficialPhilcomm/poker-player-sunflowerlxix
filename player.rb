@@ -21,12 +21,22 @@ class Player
   def handle_first_round(game_state)
     me = OpenStruct.new(game_state.players[game_state.in_action])
 
-    has_value_card = me.hole_cards.select do |hole_card|
-      Card.from_json(hole_card).over_nine?
+    cards = me.hole_cards.map do |hole_card|
+      Card.from_json(hole_card)
+    end
+
+    has_value_card = cards.select do |card|
+      card.over_nine?
     end.any?
 
+    evaluator = CardsEvaluator.new(cards)
+
     if has_value_card
-      game_state.current_buy_in - me.bet
+      if evaluator.pair?
+        game_state.current_buy_in - me.bet + 10
+      else
+        game_state.current_buy_in - me.bet
+      end
     else
       0
     end
