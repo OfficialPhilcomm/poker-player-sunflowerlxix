@@ -55,7 +55,7 @@ class Player
 
     if evaluator.royal_flush?
       me.stack
-    elsif evaluator.three_of_a_kind?
+    elsif evaluator.three_of_a_kind? && me.bet > 200
       game_state.current_buy_in - me.bet + 20
     else
       game_state.current_buy_in - me.bet
