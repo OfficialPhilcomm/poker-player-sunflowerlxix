@@ -3,7 +3,7 @@ require_relative "./lib/cards_evaluator"
 require_relative "./lib/pair_evaluator"
 
 class Player
-  VERSION = "How dare you Patrick!"
+  VERSION = "Yolo!"
 
   def bet_request(game_state)
     game_state = OpenStruct.new(game_state)
