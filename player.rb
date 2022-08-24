@@ -1,5 +1,6 @@
 require_relative "./lib/card"
 require_relative "./lib/cards_evaluator"
+require_relative "./lib/pair_evaluator"
 
 class Player
   VERSION = "How dare you Patrick!"
@@ -62,9 +63,19 @@ class Player
     elsif evaluator.two_pair? && me.bet < 300
       raise_by(game_state, 20)
     elsif evaluator.pair? && me.bet < 150
-      raise_by(game_state, 10)
+      from_evaluator(game_state, PairEvaluator.new(pair, game_state).evaluate)
     else
       call(game_state)
+    end
+  end
+
+  def from_evaluator(game_state, evaluator_result)
+    if evaluator_result[0] == "fold"
+      fold
+    elsif evaluator_result[0] == "call"
+      call(game_state)
+    else
+      raise_by(game_state, evaluator_result[1])
     end
   end
 
