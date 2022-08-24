@@ -32,7 +32,7 @@ class Player
     evaluator = CardsEvaluator.new(cards)
 
     if has_value_card
-      if evaluator.pair?
+      if evaluator.pair? && me.bet > 50
         game_state.current_buy_in - me.bet + 10
       else
         game_state.current_buy_in - me.bet
@@ -55,6 +55,8 @@ class Player
 
     if evaluator.royal_flush?
       me.stack
+    elsif evaluator.three_of_a_kind?
+      game_state.current_buy_in - me.bet + 20
     else
       game_state.current_buy_in - me.bet
     end
