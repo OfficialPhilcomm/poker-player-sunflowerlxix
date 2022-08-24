@@ -1,7 +1,7 @@
 
 class Player
 
-  VERSION = "Very good version"
+  VERSION = "Arrrrr ya winning?"
 
   def bet_request(game_state)
     me = game_state["players"][game_state["in_action"]]
