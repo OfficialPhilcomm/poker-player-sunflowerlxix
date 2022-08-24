@@ -55,10 +55,12 @@ class Player
 
     if evaluator.royal_flush?
       all_in(game_state)
-    elsif evaluator.three_of_a_kind? && me.bet < 200
-      raise_by(game_state, 20)
     elsif evaluator.three_of_a_kind? && me.bet < 400
       raise_by(game_state, 50)
+    elsif evaluator.two_pair? && me.bet < 300
+      raise_by(game_state, 20)
+    elsif evaluator.pair? && me.bet < 150
+      raise_by(game_state, 10)
     else
       call(game_state)
     end
