@@ -9,8 +9,6 @@ class CardsEvaluator
 
   end
 
-  private
-
   def pair?
     cards.map do |card|
       card.rank
