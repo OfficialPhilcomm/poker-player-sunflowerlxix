@@ -37,8 +37,8 @@ class CardsEvaluator
 
   def flush?
     cards.map do |card|
-      card.suite
-    end.tally.select do |suite, count|
+      card.suit
+    end.tally.select do |suit, count|
       count == 5
     end.any?
   end
@@ -62,9 +62,9 @@ class CardsEvaluator
   def royal_flush?
     %w[hearts spades clubs diamonds].map do |suit|
       cards.select do |card|
-        card.suite == suit
+        card.suit == suit
       end.map do |card|
-        ["10", "J", "Q", "K", "A"].include? card.suite
+        ["10", "J", "Q", "K", "A"].include? card.suit
       end.count
     end.select do |card_count|
       card_count == 5
