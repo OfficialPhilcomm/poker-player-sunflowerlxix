@@ -44,29 +44,30 @@ class Player
   end
 
   def handle_other_rounds(game_state)
-    me = OpenStruct.new(game_state.players[game_state.in_action])
+    # me = OpenStruct.new(game_state.players[game_state.in_action])
 
-    all_cards = me.hole_cards.map do |hole_card|
-      Card.from_json(hole_card)
-    end + game_state.community_cards.map do |community_card|
-      Card.from_json(community_card)
-    end
+    # all_cards = me.hole_cards.map do |hole_card|
+    #   Card.from_json(hole_card)
+    # end + game_state.community_cards.map do |community_card|
+    #   Card.from_json(community_card)
+    # end
 
-    evaluator = CardsEvaluator.new(all_cards)
+    # evaluator = CardsEvaluator.new(all_cards)
 
-    if evaluator.royal_flush?
-      all_in(game_state)
-    elsif evaluator.full_house? && me.bet < 500
-      raise_by(game_state, 50)
-    elsif evaluator.three_of_a_kind? && me.bet < 400
-      raise_by(game_state, 50)
-    elsif evaluator.two_pair? && me.bet < 300
-      raise_by(game_state, 20)
-    elsif evaluator.pair? && me.bet < 150
-      from_evaluator(game_state, PairEvaluator.new(pair, game_state).evaluate)
-    else
-      call(game_state)
-    end
+    # if evaluator.royal_flush?
+    #   all_in(game_state)
+    # elsif evaluator.full_house? && me.bet < 500
+    #   raise_by(game_state, 50)
+    # elsif evaluator.three_of_a_kind? && me.bet < 400
+    #   raise_by(game_state, 50)
+    # elsif evaluator.two_pair? && me.bet < 300
+    #   raise_by(game_state, 20)
+    # elsif evaluator.pair? && me.bet < 150
+    #   from_evaluator(game_state, PairEvaluator.new(pair, game_state).evaluate)
+    # else
+    #   call(game_state)
+    # end
+    all_in(game_state)
   end
 
   def from_evaluator(game_state, evaluator_result)
