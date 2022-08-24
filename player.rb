@@ -35,14 +35,6 @@ class Player
   def handle_other_rounds(game_state)
     me = OpenStruct.new(game_state.players[game_state.in_action])
 
-    has_value_card = me.hole_cards.select do |hole_card|
-      Card.from_json(hole_card).over_nine?
-    end.any?
-
-    if has_value_card
-      game_state.current_buy_in - me.bet
-    else
-      0
-    end
+    game_state.current_buy_in - me.bet
   end
 end
