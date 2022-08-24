@@ -2,7 +2,7 @@ require_relative "./lib/card"
 require_relative "./lib/cards_evaluator"
 
 class Player
-  VERSION = "Arrrrr ya winning?"
+  VERSION = "Come at us!"
 
   def bet_request(game_state)
     me = game_state["players"][game_state["in_action"]]
