@@ -5,26 +5,26 @@ class CardsEvaluator
     @cards = cards
   end
 
-  def pair?
+  def ranks_tally
     cards.map do |card|
       card.rank
-    end.tally.select do |rank, count|
+    end.tally
+  end
+
+  def pair?
+    ranks_tally.select do |rank, count|
       count == 2
     end.any?
   end
 
   def two_pair?
-    cards.map do |card|
-      card.rank
-    end.tally.count do |rank, count|
+    ranks_tally.count do |rank, count|
       count == 2
     end >= 2
   end
 
   def three_of_a_kind?
-    cards.map do |card|
-      card.rank
-    end.tally.select do |rank, count|
+    ranks_tally.select do |rank, count|
       count == 3
     end.any?
   end
@@ -34,21 +34,17 @@ class CardsEvaluator
   end
 
   def flush?
-    cards.map do |card|
-      card.suit
-    end.tally.select do |suit, count|
+    ranks_tally.select do |suit, count|
       count == 5
     end.any?
   end
 
   def full_house?
-
+    ranks_tally.value?(2) && ranks_tally.value?(3)
   end
 
   def four_of_a_kind?
-    cards.map do |card|
-      card.rank
-    end.tally.select do |rank, count|
+    ranks_tally.select do |rank, count|
       count == 4
     end.any?
   end

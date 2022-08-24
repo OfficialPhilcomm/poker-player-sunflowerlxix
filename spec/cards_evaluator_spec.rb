@@ -8,6 +8,38 @@ RSpec.describe CardsEvaluator do
     []
   end
 
+  describe "full_house" do
+    context "match" do
+      let(:cards) do
+        [
+          Card.new("10", "hearts"),
+          Card.new("10", "clubs"),
+          Card.new("K", "clubs"),
+          Card.new("K", "hearts"),
+          Card.new("K", "spades")
+        ]
+      end
+      it "matches" do
+        expect(subject).to be_full_house
+      end
+    end
+
+    context "no match" do
+      let(:cards) do
+        [
+          Card.new("10", "hearts"),
+          Card.new("J", "hearts"),
+          Card.new("Q", "hearts"),
+          Card.new("K", "diamonds"),
+          Card.new("A", "hearts")
+        ]
+      end
+      it "matches" do
+        expect(subject).not_to be_full_house
+      end
+    end
+  end
+
   describe "royal_flush?" do
     context "match" do
       let(:cards) do
