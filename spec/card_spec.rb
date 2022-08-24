@@ -1,6 +1,6 @@
 require "spec_helper"
 require "json"
-require_relative "../card"
+require_relative "../lib/card"
 
 RSpec.describe Card do
   let(:over_nine_card) do
