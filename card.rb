@@ -1,9 +1,9 @@
 class Card
   attr_accessor :rank, :suite
 
-  def initialize(rank, suite)
+  def initialize(rank, suit)
     @rank = rank
-    @suite = suite
+    @suit = suit
   end
 
   def over_nine?
