@@ -13,7 +13,7 @@ class PairEvaluator
   end
 
   def evaluate
-      if high_value?
+      if high_value? && @game_state.current_buy_in < 60
         ["raise", @game_state.current_buy_in - @me.bet + (@me.stack * 0.4)]
       else
         ["call"]
