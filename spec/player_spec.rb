@@ -1,13 +1,10 @@
 require "spec_helper"
+require "json"
 require_relative "../player"
 
 RSpec.describe Player do
   let(:game_state)  do
-    {
-      "in_action" => "User",
-      "current_buy_in" => 100,
-      "players" => { "User" => { "bet" => 100 } }
-    }
+    JSON.parse(File.read("spec/files/game_state.json"))
   end
 
   it "works" do
