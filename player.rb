@@ -5,10 +5,12 @@ class Player
   VERSION = "Come at us!"
 
   def bet_request(game_state)
-    me = game_state["players"][game_state["in_action"]]
+    game_state = OpenStruct.new(game_state)
 
-    has_value_card = me["hole_cards"].select do |hole_card|
-      ["10", "J", "Q", "K", "A"].include? hole_card["rank"]
+    me = OpenStruct.new(game_state.players[game_state.in_action])
+
+    has_value_card = me.hole_cards.select do |hole_card|
+      Card.new(hole_card["rank"], hole_card["suit"]).over_nine?
     end.any?
 
     if has_value_card
