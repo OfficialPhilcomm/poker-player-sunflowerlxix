@@ -33,9 +33,9 @@ class Player
 
     if has_value_card
       if evaluator.pair? && me.bet > 50
-        game_state.current_buy_in - me.bet + 10
+        raise_by(game_state, 10)
       else
-        game_state.current_buy_in - me.bet
+        call(game_state)
       end
     else
       0
@@ -54,11 +54,35 @@ class Player
     evaluator = CardsEvaluator.new(all_cards)
 
     if evaluator.royal_flush?
-      me.stack
+      all_in(game_stack)
     elsif evaluator.three_of_a_kind? && me.bet > 200
-      game_state.current_buy_in - me.bet + 20
+      raise_by(game_state, 20)
     else
-      game_state.current_buy_in - me.bet
+      call(game_stack)
     end
+  end
+
+  def call(game_state)
+    me = OpenStruct.new(game_state.players[game_state.in_action])
+
+    game_state.current_buy_in - me.bet
+  end
+
+  def raise_by(game_state, raise_by)
+    me = OpenStruct.new(game_state.players[game_state.in_action])
+
+    raise_by = [me.stack, raise_by].min
+
+    game_state.current_buy_in - me.bet + raise_by
+  end
+
+  def fold(game_state)
+    game_state.current_buy_in
+  end
+
+  def all_in(game_state)
+    me = OpenStruct.new(game_state.players[game_state.in_action])
+
+    me.stack
   end
 end
