@@ -1,3 +1,5 @@
+require_relative "./lib/card"
+require_relative "./lib/cards_evaluator"
 
 class Player
 

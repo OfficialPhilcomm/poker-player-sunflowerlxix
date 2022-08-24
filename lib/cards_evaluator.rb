@@ -20,7 +20,7 @@ class CardsEvaluator
   end
 
   def two_pair?
-    
+
   end
 
   def three_of_a_kind?
@@ -42,9 +42,9 @@ class CardsEvaluator
       count == 5
     end.any?
   end
-  
+
   def full_house?
-    
+
   end
 
   def four_of_a_kind?
