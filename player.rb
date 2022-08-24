@@ -54,11 +54,11 @@ class Player
     evaluator = CardsEvaluator.new(all_cards)
 
     if evaluator.royal_flush?
-      all_in(game_stack)
+      all_in(game_state)
     elsif evaluator.three_of_a_kind? && me.bet > 200
       raise_by(game_state, 20)
     else
-      call(game_stack)
+      call(game_state)
     end
   end
 
